@@ -1,0 +1,4 @@
+#!/bin/sh
+
+curl -s https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi\?retmode\=json\&db\=sra\&id\=$1 \
+| python -c "import sys; from xml.etree import ElementTree as xml;print xml.parse(sys.stdin).find('.//EXPERIMENT').attrib['accession']"
